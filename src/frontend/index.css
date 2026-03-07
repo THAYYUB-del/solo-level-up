@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* Solo Leveling Dark Theme - Only Dark Mode */
+    --background: 0.08 0.012 265;
+    --foreground: 0.92 0.02 240;
+    --card: 0.11 0.018 265;
+    --card-foreground: 0.92 0.02 240;
+    --popover: 0.13 0.02 265;
+    --popover-foreground: 0.92 0.02 240;
+    --primary: 0.72 0.21 220;
+    --primary-foreground: 0.08 0.012 265;
+    --secondary: 0.18 0.025 265;
+    --secondary-foreground: 0.85 0.02 240;
+    --muted: 0.16 0.02 265;
+    --muted-foreground: 0.55 0.04 240;
+    --accent: 0.58 0.22 285;
+    --accent-foreground: 0.95 0.01 240;
+    --destructive: 0.60 0.22 25;
+    --destructive-foreground: 0.95 0.01 240;
+    --border: 0.22 0.04 265;
+    --input: 0.18 0.03 265;
+    --ring: 0.72 0.21 220;
+
+    /* Chart colors */
+    --chart-1: 0.72 0.21 220;
+    --chart-2: 0.58 0.22 285;
+    --chart-3: 0.75 0.18 85;
+    --chart-4: 0.65 0.20 150;
+    --chart-5: 0.70 0.24 45;
+
+    /* Sidebar */
+    --sidebar: 0.09 0.015 265;
+    --sidebar-foreground: 0.85 0.02 240;
+    --sidebar-primary: 0.72 0.21 220;
+    --sidebar-primary-foreground: 0.08 0.012 265;
+    --sidebar-accent: 0.14 0.022 265;
+    --sidebar-accent-foreground: 0.85 0.02 240;
+    --sidebar-border: 0.22 0.04 265;
+    --sidebar-ring: 0.72 0.21 220;
+
+    /* Custom Solo Leveling tokens */
+    --glow-blue: #00d4ff;
+    --glow-purple: #8b5cf6;
+    --rank-e: #6b7280;
+    --rank-d: #22c55e;
+    --rank-c: #3b82f6;
+    --rank-b: #8b5cf6;
+    --rank-a: #f97316;
+    --rank-s: #eab308;
+    --rank-ss: #f59e0b;
+    --rank-sss: #ef4444;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Outfit", sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--ring));
+  }
+}
+
+@layer utilities {
+  .glow-blue {
+    box-shadow: 0 0 8px var(--glow-blue), 0 0 20px rgba(0, 212, 255, 0.2);
+  }
+  .glow-purple {
+    box-shadow: 0 0 8px var(--glow-purple), 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  .glow-text-blue {
+    text-shadow: 0 0 8px var(--glow-blue), 0 0 16px rgba(0, 212, 255, 0.5);
+  }
+  .glow-text-purple {
+    text-shadow: 0 0 8px var(--glow-purple), 0 0 16px rgba(139, 92, 246, 0.5);
+  }
+  .glow-text-gold {
+    text-shadow: 0 0 8px #eab308, 0 0 20px rgba(234, 179, 8, 0.6);
+  }
+  .border-glow-blue {
+    border-color: var(--glow-blue);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4), inset 0 0 8px rgba(0, 212, 255, 0.05);
+  }
+  .border-glow-purple {
+    border-color: var(--glow-purple);
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), inset 0 0 8px rgba(139, 92, 246, 0.05);
+  }
+  .font-display {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+  .font-mono-sl {
+    font-family: "JetBrains Mono", monospace;
+  }
+  .panel-bg {
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border));
+    backdrop-filter: blur(12px);
+  }
+  .system-panel {
+    background: linear-gradient(135deg, oklch(0.10 0.02 265 / 0.95), oklch(0.13 0.025 275 / 0.95));
+    border: 1px solid var(--glow-blue);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.15), inset 0 0 12px rgba(0, 212, 255, 0.03);
+  }
+  .quest-card {
+    background: linear-gradient(135deg, oklch(0.12 0.022 265 / 0.9), oklch(0.10 0.018 270 / 0.9));
+    border: 1px solid oklch(var(--border));
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .quest-card:hover {
+    border-color: var(--glow-blue);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px var(--glow-blue), 0 0 20px rgba(0, 212, 255, 0.2); }
+  50% { box-shadow: 0 0 15px var(--glow-blue), 0 0 35px rgba(0, 212, 255, 0.4); }
+}
+
+@keyframes pulse-glow-purple {
+  0%, 100% { box-shadow: 0 0 8px var(--glow-purple), 0 0 20px rgba(139, 92, 246, 0.2); }
+  50% { box-shadow: 0 0 15px var(--glow-purple), 0 0 35px rgba(139, 92, 246, 0.4); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+  0%, 97%, 100% { opacity: 1; }
+  98% { opacity: 0.8; }
+  99% { opacity: 0.95; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes xp-fill {
+  from { width: 0; }
+  to { width: var(--xp-percent); }
+}
+
+@keyframes rank-reveal {
+  0% { transform: scale(0.5); opacity: 0; filter: blur(10px); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; filter: blur(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes system-text-in {
+  0% { opacity: 0; transform: translateY(4px); letter-spacing: 0.5em; }
+  100% { opacity: 1; transform: translateY(0); letter-spacing: 0.2em; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow-purple {
+  animation: pulse-glow-purple 2s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 8s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-rank-reveal {
+  animation: rank-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-system-text {
+  animation: system-text-in 0.5s ease-out forwards;
+}
